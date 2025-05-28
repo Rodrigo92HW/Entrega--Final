@@ -1,0 +1,124 @@
+paths:
+  /api/users:
+    get:
+      summary: Obtenemos todos los usuarios correctamente
+      tags:
+        - Users
+      responses:
+        "200":
+          description: Obtiene todos los usuarios correctamente
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/User"
+        "500":
+          description: Error interno del servidor
+    post:
+      summary: Crea un usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/createUser"
+      responses:
+        "201":
+          description: Usuario creado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "400":
+          description: Error de validación de datos
+        "500":
+          description: Error interno del servidor
+    put:
+      summary: Actualiza los datos de un usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/createUser"
+      responses:
+        "200":
+          description: Usuario actualizado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error interno del servidor
+    delete:
+      summary: Elimina un usuario
+      tags:
+        - Users
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/requestBodies/createUser"
+      responses:
+        "200":
+          description: Usuario eliminado correctamente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+        "404":
+          description: Usuario no encontrado
+        "500":
+          description: Error interno del servidor
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        _id:
+          type: ObjectId
+          description: ID autogenerado por MongoDB
+        first_name:
+          type: string
+          description: Nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        password:
+          type: string
+          description: Contraseña del usuario
+      example:
+        _id: ObjectId("60c72b2f9b1e8d001c8e4f5a")
+        first_name: "John"
+        last_name: "Doe"
+        password: "password"
+  requestBodies:
+    createUser:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: Nombre del usuario
+        last_name:
+          type: string
+          description: Apellido del usuario
+        password:
+          type: string
+          description: Contraseña del usuario
+        email:
+          type: string
+          description: Correo electrónico del usuario
+      example:
+        first_name: "Jane"
+        last_name: "Doe"
+        password: "securepassword"
+        email: "jane@last_name.com"
