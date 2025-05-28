@@ -10,7 +10,7 @@ AdoptaMe es una aplicación web para gestionar la adopción de mascotas, permiti
 - Documentación de API con Swagger
 
 ## DockerHub
-https://hub.docker.com/r/rodrigohw/proyecto-final
+[Ver imagen en DockerHub](https://hub.docker.com/r/rodrigohw/proyecto-final)
 
 ## Instalación
 
